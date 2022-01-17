@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>ExOS</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>ExOS</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div style="background-color: #aa5555; border: 2px solid black;text-align: center;height: auto;color: white;">
+		<span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: left;"><a href="#" style="color: white" onclick="manager()">Manager</a>  <a href="#" style="color: white" onclick="install()">Install</a></span>
+              <span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: center;">ExOS</span>
+              <span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: right;"><a href="#" onclick="clock()" style="color: white" id="datetime">date&time</a></span>
+              </div>
+            
         <!-- main menu -->
-        <span style="color: lightgrey">ExOS Development Build. v0.2</span>
-        <div style="background-color: white; border: 2px solid black; height: 80%; position: absolute; width: 85%;left: 30px;top:30px; border-top: 1px solid black;filter: drop-shadow(5px 5px 1px grey);  resize: both;overflow: auto;" id="main">
-            <div style="background-color: #557fa9; border: 1px solid black;text-align: center;height: auto;" id="mainTitleBox">
+        <div style="background-color: white; border-width: 1px 2px 2px; border-style: solid; border-color: black; border-image: initial; height: 329px; position: absolute; width: 230px; left: 17px; top: 32px; filter: drop-shadow(grey 5px 5px 1px); resize: both; overflow: auto;" id="main">
+            <div style="background-color: #557fa9; border: 1px solid black;text-align: center;height: auto;" id="mainTitleBox" onmouseover="triggerMove('main')">
               <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: left;"><a href="#" onclick="hidemainLinks()"><button style="border-bottom: 0px solid black;" id="hidemainLinks">-</button></a></span>
               <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: center;" id="mainTitle">Empty Panel</span>
-              <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="popup('show','Error','You cannot close the main window.')"><button style="border-bottom: 0px solid black;">x</button></a></span>
+              <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="popup('lol u cant do that!','you cant close out the manager silly...','auto','auto');"><button style="border-bottom: 0px solid black; display:">x</button></a></span>
             </div>
             <div style="text-align: left; background-color: #c0c7c8; border: 1px solid black;border-bottom: 2px solid black;" id="mainLinks">
             <a id="managerLink" class="link" href="#" onclick="manager()">Manager</a>
@@ -21,22 +28,9 @@
           <div id="mainBody">
             </div>
         </div>
-        <!-- popup menu -->
-        <div style="background-color: white; border: 2px solid black; height: 80%; position: absolute; width: 60%;left: 30px;top:30px; border-top: 1px solid black;filter: drop-shadow(5px 5px 1px grey);resize: both;overflow: auto;display:none;" id="popup">
-            <div style="text-align: center;background-color: #557fa9; border: 1px solid black;" id="popupTitleBox">
-              <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: left;"><a href="#" onclick="hidepopupLinks()"><button style="border-bottom: 0px solid black;" id="hidepopupLinks">-</button></a></span>
-              <span class="title" style="background-color: #557fa9; color: white; display: inline;font-weight: normal;" id="popupTitle">Empty Panel</span>
-              <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="popup('hide')"><button style="border-bottom: 0px solid black;">x</button></a></span>
-            </div>
-            <div style="text-align: left; background-color: #c0c7c8; border: 1px solid black;border-bottom: 2px solid black;" id="popupLinks">
-                <a class="link" onclick="popup('hide')" href="#" id="closeLink">Close</a>
-            </div>
-            <div id="popupBody">
-            </div>
-        </div>
-        <!-- main menu -->
 
-        <script src="kernal.js"></script>
         <script id="unsigned"></script>
+        <script src="kernal.js"></script>
+
     </body>
 </html>
