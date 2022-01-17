@@ -97,7 +97,7 @@ function addToManager(title,action) {
   main('Manager','<ul style="margin: 0px; font-weight: bold; padding: 0px;">' + shortcuts + '</ul>')
 }
 
-function finishinstall() {
+function finishinstalling() {
  var script = document.createElement('script');
  script.src = "https://brodyking.github.io/ExOS-Apps/" + document.getElementById("packagename").textContent; + ".js";
  document.head.appendChild(script);
@@ -105,7 +105,7 @@ function finishinstall() {
 }
 
 function install() {
-  popup('show','Install',"<span style='color: red'>NOTE: FILES MUST BE HOSTED ON REPL TO LINK</span><br>Package URL:<br>><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstall()' style='margin-right: 10px;'>Install Script</buton><button onclick='closepopup()'>Close</a>","500px","auto")
+  popup('show','Install',"<span style='color: red'>NOTE: FILES MUST BE HOSTED ON REPL TO LINK</span><br>Package URL:<br>><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</buton><button onclick='closepopup()'>Close</a>","500px","auto")
 }
 
 function closepopup() {
