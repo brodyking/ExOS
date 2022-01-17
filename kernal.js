@@ -99,7 +99,7 @@ function addToManager(title,action) {
 
 function finishinstalling() {
  var script = document.createElement('script');
- script.src = "https://brodyking.github.io/ExOS-Apps/" + document.getElementById("packagename").textContent; + ".js";
+ script.src = "https://brodyking.github.io/ExOS-Apps/" + document.getElementById("packagename").textContent + ".js";
  document.head.appendChild(script);
  popup('show','Install',document.getElementById("packagename").textContent + " was installed.<br><br><button onclick='closepopup()'>Close</a>")
 }
