@@ -80,10 +80,14 @@ function popup(title,body,width,height) {
   dragElement(document.getElementById("main"));
 }
 
-var shortcuts = "<li id='apps'><a href='#' onclick='manager();'>Manager</a></li><li><a href='#' onclick='install()'>Install</a></li><li><a href='#' onclick='clock()'>Clock</a></li><li><a href='#' onclick='about()'>About</a></li>"
+var shortcuts = "<li><a href='#' onclick='clock()'>Clock</a></li>"
 
 function about() {
-  popup("About","You are currently using ExOS v0.3<br>This version includes infinite popups and a new taskbar at the top!");
+  popup("About","<h1 style='text-align: center'>ExOS</h1><p style='text-align: center'>Version 0.4 Pre-Release</p><a href='https://github.com/brodyking/ExOS/releases'><button>View all Releases</button></a><a href='https://brodyking.github.io/ExOS-Apps/'><button>View App Repository</button></a>");
+}
+
+function href(link) {
+  popup("Open External Link","Are you sure you want to open this external link?<br><br><a href=" + link +"><button>Accept</button></a> <a href='#' onclick='hide(" + '"' + "Open External Link" + '"' + ")'><button>Decline</button></a>","256px")
 }
 
 function manager() {
@@ -164,4 +168,20 @@ function clock() {
 
 function hide(popup) {
   document.getElementById(popup).remove();
+}
+
+function close(popup) {
+  document.getElementById(popup).remove();
+}
+
+var managerOpen = "0";
+
+function showmanager() {
+  if (managerOpen == "0") {
+    document.getElementById("main").style.display = "block";
+    managerOpen = "1";
+  } else if (managerOpen == "1") {
+    document.getElementById("main").style.display = "none";
+    managerOpen = "0";
+  }
 }

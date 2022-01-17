@@ -10,21 +10,22 @@
 
 <body>
 	<div style="background-color: #aa5555; border: 2px solid black;text-align: center;height: auto;color: white;">
-		<span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: left;"><a href="#" style="color: white" onclick="manager()">Manager</a>  <a href="#" style="color: white" onclick="install()">Install</a></span>
+		<span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: left;"><a href="#" style="color: white" onclick="showmanager()">Manager</a></span>
               <span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: center;">ExOS</span>
               <span class="title" style="background-color: #aa5555; color: white;font-weight: normal;float: right;"><a href="#" onclick="clock()" style="color: white" id="datetime">date&time</a></span>
               </div>
             
         <!-- main menu -->
-        <div style="background-color: white; border-width: 1px 2px 2px; border-style: solid; border-color: black; border-image: initial; height: 329px; position: absolute; width: 230px; left: 17px; top: 32px; filter: drop-shadow(grey 5px 5px 1px); resize: both; overflow: auto;" id="main">
+        <div style="background-color: white; border-width: 1px 2px 2px; border-style: solid; border-color: black; border-image: initial; height: 329px; position: absolute; width: 230px; filter: drop-shadow(grey 5px 5px 1px); resize: both; overflow: auto;display: none;" id="main">
             <div style="background-color: #557fa9; border: 1px solid black;text-align: center;height: auto;" id="mainTitleBox" onmouseover="triggerMove('main')">
               <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: left;"><a href="#" onclick="hidemainLinks()"><button style="border-bottom: 0px solid black;" id="hidemainLinks">-</button></a></span>
               <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: center;" id="mainTitle">Empty Panel</span>
-              <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="popup('lol u cant do that!','you cant close out the manager silly...','auto','auto');"><button style="border-bottom: 0px solid black; display:">x</button></a></span>
+              <span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="showmanager()"><button style="border-bottom: 0px solid black; display:">x</button></a></span>
             </div>
             <div style="text-align: left; background-color: #c0c7c8; border: 1px solid black;border-bottom: 2px solid black;" id="mainLinks">
-            <a id="managerLink" class="link" href="#" onclick="manager()">Manager</a>
-            <a id="installLink" class="link" href="#" onclick="install()">Install</a>            </div>
+              <a class="link" href="#" onclick="install()">Install</a>
+              <a class="link" href="#" onclick="about()">About</a>
+            </div>
           <div id="mainBody">
             </div>
         </div>
