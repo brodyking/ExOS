@@ -104,8 +104,9 @@ function finishinstalling() {
  popup('show','Install',document.getElementById("packagename").textContent + " was installed.<br><br><button onclick='closepopup()'>Close</a>")
 }
 
+
 function install() {
-  popup('show','Install',"<span style='color: red'>NOTE: FILES MUST BE HOSTED ON REPL TO LINK</span><br>Package URL:<br>><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</buton><button onclick='closepopup()'>Close</a>","500px","auto")
+  popup('show','Install',"Package Name:<br>><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</buton><button onclick='installunsigned()'>Install Unsigned</a>","500px","auto")
 }
 
 function closepopup() {
@@ -142,4 +143,13 @@ function hidepopupLinks() {
   document.getElementById("hidepopupLinks").innerHTML = "-";
   popupState = "1"
   }
+}
+
+function installunsigned() {
+  popup('show','Install',"<span style='color: red'>NOTE: WE DO NOT RECOMMEND DOING THIS IF YOU DO NOT TURST THE AUTHOR</span><br>Package Source:<br>><span contenteditable='true' id='packagesource' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstallingunsigned()' style='margin-right: 10px;'>Install Script</buton>","500px","auto")
+}
+
+function finishinstallingunsigned() {
+ document.getElementById("unsigned").innerHTML = document.getElementById("packagesource").textContent;
+ popup('show','Install',"a unsigned package was installed. (unsigned)<br><br><button onclick='closepopup()'>Close</a>");
 }
