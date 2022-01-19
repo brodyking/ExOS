@@ -82,8 +82,17 @@ function popup(title,body,width,height) {
 
 var shortcuts = "<li><a href='#' onclick='clock()'>Clock</a></li>"
 
+function aboutRecentChanges() {
+  popup("Recent Changes","We have made a list of new features with version 0.5<ul><li>New background color</li><li>Fixed clocks date arrangment</li><li>Added popupLinks()</li><li>Usage of different package managers</li><li>New background</li></ul>");
+}
+
+function aboutCredits() {
+  popup("Credits","All UI/Kernal programming made by Brody King. Created on replit.com and published onto github pages.","263px","146px");
+}
+
 function about() {
-  popup("About","<h1 style='text-align: center'>ExOS</h1><p style='text-align: center'>Version 0.4 Pre-Release</p><a href='https://github.com/brodyking/ExOS/releases'><button>View all Releases</button></a><a href='https://brodyking.github.io/ExOS-Apps/'><button>View App Repository</button></a>");
+  popup("About","<br><center><img src='exos.png' style='width: 225px;'></center><p style='text-align: center'>Version 0.5 Pre-Release</p><a href='https://github.com/brodyking/ExOS/releases'><button>View all Releases</button></a><a href='https://brodyking.github.io/ExOS-Apps/'><button>View App Repository</button></a>");
+  popupLinks("About","2","Recent Changes","aboutRecentChanges()","Credits","aboutCredits()");
 }
 
 function href(link) {
@@ -112,11 +121,26 @@ function finishinstalling() {
  popup('Install',packagename + " was installed.","232px","103px");
 }
 
-
-function install() {
-  popup('Install',"Package Name:<br>><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</buton>","500px","auto")
+function finishinstallingunoffical() {
+ var url = document.getElementById("packageURL").textContent;
+ var link = document.getElementById("packageLink").textContent;
+ var script = document.createElement('script');
+ script.src = url + link + ".js";
+ document.head.appendChild(script);
+ hide('Install Custom Package Manager');
+ popup('Install Custom Package Manager',link + " was installed from " + url,"500px","auto");
 }
 
+function installunoffical() {
+  hide("Install");
+  popup('Install Custom Package Manager',"Host URL><span contenteditable='true' id='packageURL' onclick='selectText(this.id)'>_</span><br>Package Name><span contenteditable='true' id='packageLink' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstallingunoffical()' style='margin-right: 10px;'>Install Script</button>","500px","auto");
+  popupLinks("Install Custom Package Manager","1","Install using default way","hide('Install Custom Package Manager');install();");
+}
+
+function install() {
+  popup('Install',"Package Name><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</button>","500px","auto");
+  popupLinks("Install","1","Custom Package Manager","installunoffical()");
+}
 
 var mainState = "1"
 
@@ -153,7 +177,7 @@ function hidepopupLinks(name) {
 
 setInterval(function(){ 
   var today = new Date();
-  var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+  var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var dateTime = date+' ] '+time;
   document.getElementById("datetime").innerHTML = dateTime;  
@@ -183,5 +207,35 @@ function showmanager() {
   } else if (managerOpen == "1") {
     document.getElementById("main").style.display = "none";
     managerOpen = "0";
+  }
+}
+
+function popupLinks(title,amount,oneA,oneB,twoA,twoB,threeA,threeB,fourA,fourB,fiveA,fiveB) {
+  switch (amount) {
+    case "1":
+      document.getElementById(title + "Links").innerHTML = '<a class="link" href="#" onclick="' + oneB + '">' + oneA + '</a>';
+    break;
+    case "2":
+      document.getElementById(title + "Links").innerHTML = '<a class="link" href="#" onclick="' + oneB + '">' + oneA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + twoB + '">' + twoA + '</a>';
+    break;
+    case "3":
+      document.getElementById(title + "Links").innerHTML = '<a class="link" href="#" onclick="' + oneB + '">' + oneA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + twoB + '">' + twoA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + threeB + '">' + threeA + '</a>';
+    break;
+    case "4":
+      document.getElementById(title + "Links").innerHTML = '<a class="link" href="#" onclick="' + oneB + '">' + oneA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + twoB + '">' + twoA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + threeB + '">' + threeA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + fourB + '">' + fourA + '</a>';
+    break;
+    case "5":
+      document.getElementById(title + "Links").innerHTML = '<a class="link" href="#" onclick="' + oneB + '">' + oneA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + twoB + '">' + twoA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + threeB + '">' + threeA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + fourB + '">' + fourA + '</a>';
+      document.getElementById(title + "Links").innerHTML += '<a class="link" href="#" onclick="' + fiveB + '">' + fiveA + '</a>';
+    break;
   }
 }
