@@ -69,21 +69,28 @@ function selectText(id){
 	}
 }
 
+var windowCount = 0;
 
 function popup(title,body,width,height) {
-  document.body.innerHTML += '<div style="background-color: white; border: 2px solid black; height: auto; position: absolute; width: auto;left: 30px;top:30px; border-top: 1px solid black;filter: drop-shadow(5px 5px 1px grey);resize: both;overflow: auto;display:block;" id="' + title + '"><div style="text-align: center;background-color: #557fa9; border: 1px solid black;" id="' + title + 'TitleBox" onmouseover="triggerMove(' + "'" + title + "'" + ')"><span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: left;"><a href="#" onclick="hidepopupLinks(' + "'" + title + "'" +')"><button style="border-bottom: 0px solid black;" id="hide' + title + 'Links">-</button></a></span><span class="title" style="background-color: #557fa9; color: white; display: inline;font-weight: normal;" id="' + title + 'Title">Empty Panel</span><span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="hide(' + "'" + title + "'" + ')"><button style="border-bottom: 0px solid black;">x</button></a></span></div><div style="text-align: left; background-color: #c0c7c8; border: 1px solid black;border-bottom: 2px solid black;" id="' + title + 'Links"><a class="link" onclick="hide(' + "'" + title + "'" + ')" href="#" id="closeLink">Close</a></div><div id="' + title + 'Body"></div></div>'
+  document.body.innerHTML += '<div style="background-color: white; border: 2px solid black; height: auto; position: absolute; width: auto;left: 30px;top:30px; border-top: 1px solid black;resize: both;overflow: auto;display:block;" id="' + title + '"><div style="text-align: center;background-color: #557fa9; border: 1px solid black;" id="' + title + 'TitleBox" onmouseover="triggerMove(' + "'" + title + "'" + ')"><span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: left;"><a href="#" onclick="hidepopupLinks(' + "'" + title + "'" +')"><button style="border-bottom: 0px solid black;" id="hide' + title + 'Links">-</button></a></span><span class="title" style="background-color: #557fa9; color: white; display: inline;font-weight: normal;" id="' + title + 'Title">Empty Panel</span><span class="title" style="background-color: #557fa9; color: white;font-weight: normal;float: right;"><a href="#" onclick="hide(' + "'" + title + "'" + ')"><button style="border-bottom: 0px solid black;" id="' + title + 'Close">x</button></a></span></div><div style="text-align: left; background-color: #c0c7c8; border: 1px solid black;border-bottom: 2px solid black;" id="' + title + 'Links"><a class="link" onclick="hide(' + "'" + title + "'" + ')" href="#" id="' + title + 'closeLink">Close</a></div><div id="' + title + 'Body"></div></div>'
   document.getElementById(title + "Title").innerHTML = title;
   document.getElementById(title + "Body").innerHTML = body;
   document.getElementById(title).style.width = width;
   document.getElementById(title).style.height = height;
   dragElement(document.getElementById(title));
   dragElement(document.getElementById("main"));
+  windowCount += 1;
+  if (windowCount == 1) {
+  document.getElementById('openprograms').innerHTML += '<a id="' + title + 'OpenLink" style="background-color: #aa5555; border: 2px solid black;text-align: center;height: auto;color: white;border-bottom: 0px solid black;text-align: center;margin: auto;display: inline-block;" onclick="hide(' + "'" + title + "'" + ')">' + title + '</a>';
+  } else {
+  document.getElementById('openprograms').innerHTML += '<a id="' + title + 'OpenLink" style="background-color: #aa5555; border: 2px solid black;text-align: center;height: auto;color: white;border-bottom: 0px solid black;text-align: center;margin: auto;display: inline-block;margin-left: 10px;" onclick="hide(' + "'" + title + "'" + ')">' + title + '</a>';
+  }
 }
 
 var shortcuts = "<li><a href='#' onclick='clock()'>Clock</a></li>"
 
 function aboutRecentChanges() {
-  popup("Recent Changes","We have made a list of new features with version 0.5<ul><li>New background color</li><li>Fixed clocks date arrangment</li><li>Added popupLinks()</li><li>Usage of different package managers</li><li>New background</li></ul>");
+  popup("Recent Changes","We have made a list of new features with version 0.6<ul><li>Package install with cInstall(packagename)</li><li>Package install with another pm with cInstallpm(url,link)</li><li>Fixed addToManager()</li><li>Fixed time in the top right.</li><li>Taskbar that shows all open apps at the bottom of the screen.</li></ul>");
 }
 
 function aboutCredits() {
@@ -91,7 +98,7 @@ function aboutCredits() {
 }
 
 function about() {
-  popup("About","<br><center><img src='exos.png' style='width: 225px;'></center><p style='text-align: center'>Version 0.5 Pre-Release</p><a href='https://github.com/brodyking/ExOS/releases'><button>View all Releases</button></a><a href='https://brodyking.github.io/ExOS-Apps/'><button>View App Repository</button></a>");
+  popup("About","<br><center><img src='exos.png' style='width: 225px;'></center><p style='text-align: center'>Version 0.6 Pre-Release</p><a href='https://github.com/brodyking/ExOS/releases'><button>View all Releases</button></a><a href='https://brodyking.github.io/ExOS-Apps/'><button>View App Repository</button></a>");
   popupLinks("About","2","Recent Changes","aboutRecentChanges()","Credits","aboutCredits()");
 }
 
@@ -107,7 +114,7 @@ function manager() {
 manager()
 
 function addToManager(title,action) {
-  shortcuts += "<li><a href='#' onclick='" + action + "'>" + title + "</a><li>"
+  shortcuts += "<li><a href='#' onclick='" + action + "'>" + title + "</a></li>"
   document.getElementById("mainTitle").innerHTML = 'Manager';
   document.getElementById("mainBody").innerHTML = '<ul style="margin: 0px; font-weight: bold; padding: 0px;">' + shortcuts + '</ul>';
 }
@@ -131,14 +138,30 @@ function finishinstallingunoffical() {
  popup('Install Custom Package Manager',link + " was installed from " + url,"500px","auto");
 }
 
+function cInstallpm(url,link) {
+ var url = url
+ var link = link
+ var script = document.createElement('script');
+ script.src = url + link + ".js";
+ document.head.appendChild(script);
+ console.log(link + " was installed from " + url,"500px","auto");
+}
+
+function cInstall(packagename) {
+ var script = document.createElement('script');
+ script.src = "https://brodyking.github.io/ExOS-Apps/" + packagename + ".js";
+ document.head.appendChild(script);
+ console.log(packagename + " was installed.");
+}
+
 function installunoffical() {
   hide("Install");
-  popup('Install Custom Package Manager',"Host URL><span contenteditable='true' id='packageURL' onclick='selectText(this.id)'>_</span><br>Package Name><span contenteditable='true' id='packageLink' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstallingunoffical()' style='margin-right: 10px;'>Install Script</button>","500px","auto");
+  popup('Install Custom Package Manager',"Host URL><span contenteditable='true' id='packageURL' onclick='selectText(this.id)'>_</span><br>Package Name><span contenteditable='true' id='packageLink' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstallingunoffical()' class='installbutton' style='margin-right: 10px;'>Install Script</button>","500px","auto");
   popupLinks("Install Custom Package Manager","1","Install using default way","hide('Install Custom Package Manager');install();");
 }
 
 function install() {
-  popup('Install',"Package Name><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</button>","500px","auto");
+  popup('Install',"Package Name><span contenteditable='true' id='packagename' onclick='selectText(this.id)'>_</span><br><br><button class='installbutton' onclick='finishinstalling()' style='margin-right: 10px;'>Install Script</button>","500px","auto");
   popupLinks("Install","1","Custom Package Manager","installunoffical()");
 }
 
@@ -174,15 +197,33 @@ function hidepopupLinks(name) {
   }
 }
 
-
-setInterval(function(){ 
+function currentTime() {
   var today = new Date();
-  var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  var dateTime = date+' ] '+time;
-  document.getElementById("datetime").innerHTML = dateTime;  
-}, 100);
+  var datetd = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+  let date = new Date(); 
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
 
+  if(hh === 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let time = hh + ":" + mm + " " + session;
+
+  document.getElementById("datetime").innerHTML = datetd + ' ] ' + time; 
+  let t = setTimeout(function(){ currentTime() }, 1000);
+}
+
+currentTime();
 var clockOpen = "0"
 
 function clock() {
@@ -192,10 +233,14 @@ function clock() {
 
 function hide(popup) {
   document.getElementById(popup).remove();
+  document.getElementById(popup + "OpenLink").remove();
+  windowCount -= 1;
 }
 
 function close(popup) {
   document.getElementById(popup).remove();
+  document.getElementById(popup + "OpenLink").remove();
+  windowCount -= 1;
 }
 
 var managerOpen = "0";
@@ -239,3 +284,11 @@ function popupLinks(title,amount,oneA,oneB,twoA,twoB,threeA,threeB,fourA,fourB,f
     break;
   }
 }
+function checktaskbar() {
+  if (document.getElementById('openprogramslist'.textContent) == null) {
+    document.getElementById('openprograms').style.display = "none";
+  } else {
+    document.getElementById('openprograms').style.display = "inline-block";
+  }
+}
+checktaskbar()

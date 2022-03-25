@@ -49,8 +49,14 @@ body{
 }
 
 html {
-  cursor: url('CursorsXP.cur'), pointer;
+  cursor: url('normal.cur'), pointer;
 }
 a {
-  cursor: url('CursorsXP.cur'), pointer;
+  cursor: url('hand2.cur'), pointer;
+}
+button {
+  cursor: url('hand2.cur'), pointer;
+}
+.installbutton {
+  cursor: url('plus.cur'), pointer;
 }
